@@ -8,16 +8,21 @@ var webhooks = require('./lib/webhook');
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
+app.use(bodyParser.json());
 app.use('/', router);
-app.use(bodyParser.json())
 
 router.get('/', function(req, res) {
   res.render('index');
 });
 
 router.post('/webhook', function(req, res) {
-  webhooks.parse(req.get('X-Webhook-Event'), req.body);
-  console.log("Hello!");
+  var event = req.get('X-Webhook-Event');
+  webhooks.parse(event, req.body, function(err) {
+    if(err)
+      console.error(err.toString());
+    else
+      console.log('Executed webhook event "' + event + "' with body :", req.body);
+  });
   res.status(204).send(''); // Empty body - webhooks don't care
 });
 
