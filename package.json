@@ -10,6 +10,8 @@
     "nodemon": "1.2.x",
     "jade": "1.3.x",
     "body-parser": "1.4.x",
-    "sqlite3": "2.2.x"
-  }
+    "sqlite3": "2.2.x",
+    "underscore": "1.6.x"
+  },
+  "engine": "node >= 0.10.28"
 }

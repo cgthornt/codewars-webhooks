@@ -1,4 +1,16 @@
 extends layout
 
 block content
-  h1 Hello World!
+  if leaderboard.length == 0
+    p No results available.
+  else
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th User ID
+          th Rank
+      tbody
+        each user in leaderboard
+          tr
+            td= user.id
+            td= user.rank
