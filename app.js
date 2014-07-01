@@ -16,6 +16,6 @@ app.use('/', router);
 router.get('/', welcomeRoute.index);
 router.post('/webhook', webhookRoute.index);
 
-var server = app.listen(3000, function() {
+var server = app.listen(process.env.HTTP_PORT || 3000, function() {
   console.log('Listening on port %d. Powered by Express', server.address().port);
 });
