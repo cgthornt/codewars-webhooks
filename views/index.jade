@@ -1,6 +1,9 @@
 extends layout
 
 block content
+  p.lead
+    = "Results for the week of " + currentWeek.toDateString()
+
   if leaderboard.length == 0
     p No results available.
   else
@@ -12,5 +15,13 @@ block content
       tbody
         each user in leaderboard
           tr
-            td= user.id
-            td= user.rank
+            td= user.member
+            td= user.score
+
+  hr
+  a.btn.btn-default(type="button", href=("?date=" + lastWeek))
+    | Previous Week
+
+  if nextWeek <= today.getTime()
+    a.btn.btn-default.pull-right(type="button", href=("?date=" + nextWeek))
+      | Next Week
