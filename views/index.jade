@@ -15,7 +15,8 @@ block content
       tbody
         each rank in leaderboard
           tr
-            td= rank.user.username
+            td
+              a(href="https://www.codewars.com/users/" + rank.user.username, target="_blank")= rank.user.username
             td= rank.ranking.score
 
   hr
