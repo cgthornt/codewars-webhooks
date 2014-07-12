@@ -13,10 +13,10 @@ block content
           th User ID
           th Rank
       tbody
-        each user in leaderboard
+        each rank in leaderboard
           tr
-            td= user.member
-            td= user.score
+            td= rank.user.username
+            td= rank.ranking.score
 
   hr
   a.btn.btn-default(type="button", href=("?date=" + lastWeek))

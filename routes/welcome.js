@@ -1,5 +1,8 @@
-var leaderboards = require('../lib/leaderboards');
+var resultList = require('./../lib/resultList');
 require('date-utils');
+
+
+
 
 exports.index = function(req, res) {
   var today = Date.today();
@@ -7,9 +10,10 @@ exports.index = function(req, res) {
       nextWeek = currentWeek.getTime() + (604800 * 1000),
       lastWeek = currentWeek.getTime() - (604800 * 1000);
 
-  leaderboards.create(currentWeek).list(function(err, list) {
+
+  resultList.getResults(currentWeek).then(function(resultList) {
     res.render('index', {
-      leaderboard: list,
+      leaderboard: resultList,
       currentWeek: currentWeek,
       nextWeek: nextWeek,
       lastWeek: lastWeek,
